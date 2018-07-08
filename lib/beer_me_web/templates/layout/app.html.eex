@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BEER ME</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+  </head>
+
+  <body>
+    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">BEER ME</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation" style="">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link "Home", to: page_path(@conn, :index), class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link "Find Beers", to: '#', class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link "Find Breweries", to: '#', class: "nav-link" %>
+      </li>
+      <%= if @current_user do %>
+        <li class="nav-item">
+           <%= link "Log the Fuck Out", to: session_path(@conn, :delete, @current_user), method: :delete, class: "nav-link" %>
+        </li>
+      <% else %>
+         <li class="nav-item">
+           <%= link "Fuckin' Join Beer Me", to: user_path(@conn, :new), class: "nav-link" %>
+         </li>
+         <li class="nav-item">
+           <%= link "Sign the Fuck In", to: session_path(@conn, :new), class: "nav-link" %>
+          </li>
+      <% end %>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+      </header>
+
+   
+
+      <main role="main">
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+
+    </div> <!-- /container -->
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>
